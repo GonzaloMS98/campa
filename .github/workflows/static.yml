@@ -1,5 +1,6 @@
-name: Deploy
+name: Deploy Vite Project
 
+# Trigger the workflow on push to the main branch
 on:
   push:
     branches:
@@ -7,43 +8,27 @@ on:
 
 jobs:
   build:
-    name: Build
     runs-on: ubuntu-latest
-
+    
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-      - name: Setup Node
-        uses: actions/setup-node@v3
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '20' # specify the Node.js version you want to use
 
-      - name: Install dependencies
-        uses: bahmutov/npm-install@v1
+    - name: Install dependencies
+      run: npm install
 
-      - name: Build project
-        run: npm run build
+    - name: Build the Vite project
+      run: npm run build
 
-      - name: Upload production-ready build files
-        uses: actions/upload-artifact@v3
-        with:
-          name: production-files
-          path: ./dist
-
-  deploy:
-    name: Deploy
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: production-files
-          path: ./dist
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@4.1.2
+      with:
+        branch: gh-pages # branch to deploy to
+        folder: dist # folder containing the production build
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
