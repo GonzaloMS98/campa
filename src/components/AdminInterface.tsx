@@ -90,7 +90,7 @@ const AdminInterface: React.FC = () => {
         <div className="container mx-auto flex justify-between items-center">
           <div className="flex items-center">
             <Trophy size={24} className="mr-2" />
-            <h1 className="text-2xl font-bold">Admin Dashboard</h1>
+            <h1 className="text-2xl font-bold">El ojo que todo lo ve</h1>
           </div>
           <div className="flex items-center space-x-2">
             <button 

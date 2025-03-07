@@ -3,17 +3,18 @@ import { supabase } from './supabase/client';
 
 // Initial data for teams and bases (used for reference)
 export const teams: Team[] = [
-  { id: 1, name: 'Team Alpha' },
-  { id: 2, name: 'Team Beta' },
-  { id: 3, name: 'Team Gamma' },
-  { id: 4, name: 'Team Delta' },
-  { id: 5, name: 'Team Epsilon' },
-  { id: 6, name: 'Team Zeta' },
-  { id: 7, name: 'Team Eta' },
-  { id: 8, name: 'Team Theta' },
-  { id: 9, name: 'Team Iota' },
-  { id: 10, name: 'Team Kappa' },
+  { id: 1, name: 'Amarillo' },
+  { id: 2, name: 'Naranja' },
+  { id: 3, name: 'Azul' },
+  { id: 4, name: 'Blanco' },
+  { id: 5, name: 'Negro' },
+  { id: 6, name: 'Morado' },
+  { id: 7, name: 'Rojo' },
+  { id: 8, name: 'Rosa' },
+  { id: 9, name: 'Verde' },
+  { id: 10, name: 'Cafe' },
 ];
+
 
 export const bases: Base[] = [
   { id: 1, name: 'Base 1', password: 'base1pass' },

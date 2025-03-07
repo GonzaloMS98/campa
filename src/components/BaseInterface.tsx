@@ -23,6 +23,7 @@ const BaseInterface: React.FC = () => {
   const [success, setSuccess] = useState('');
   const [availableTeams, setAvailableTeams] = useState<number[]>([]);
   const [baseMatches, setBaseMatches] = useState<any[]>([]);
+  const [savingResult,setSavingResult] = useState<boolean>();
 
   const baseIdNum = parseInt(baseId || '0', 10);
   const base = getBaseById(baseIdNum);
@@ -51,7 +52,7 @@ const BaseInterface: React.FC = () => {
     }
     const baseMatches = getMatches().filter(match => match.baseId === baseIdNum);
     setBaseMatches(baseMatches);
-  }, [baseIdNum, currentUser, navigate]);
+  }, [baseIdNum, currentUser, navigate, savingResult]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -79,6 +80,7 @@ const BaseInterface: React.FC = () => {
     const team2Id = typeof team2 === 'string' ? parseInt(team2, 10) : team2;
     const winnerId = winner === 'tie' ? null : (typeof winner === 'string' ? parseInt(winner, 10) : winner);
 
+    setSavingResult(true)
     await addMatch({
       baseId: baseIdNum,
       team1Id,
@@ -86,6 +88,7 @@ const BaseInterface: React.FC = () => {
       winnerId,
       completed: true
     });
+    setSavingResult(false)
 
     setSuccess('Match result recorded successfully!');
     
@@ -237,7 +240,7 @@ const BaseInterface: React.FC = () => {
                   <button
                     type="submit"
                     className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
-                    disabled={team1 === '' || team2 === '' || winner === ''}
+                    disabled={team1 === '' || team2 === '' || winner === '' || savingResult}
                   >
                     Record Result
                   </button>
