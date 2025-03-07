@@ -52,7 +52,7 @@ const Login: React.FC = () => {
         <div className="flex justify-center mb-6">
           <Trophy size={48} className="text-indigo-600" />
         </div>
-        <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">Team Event Scoring System</h1>
+        <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">CAMPA 2025</h1>
         
         {error && (
           <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
